@@ -14,7 +14,7 @@ Make a scatterplot of flipper_length_mm (y) vs bill_length_mm (x); color points 
 aes in your ggplot code should help).
 Export your first scatterplot to your project directory using ggsave.
 
-```{r setup}
+```{r setup, warning=FALSE,message=FALSE}
 #load packages 
 library("tidyverse")
 library("palmerpenguins")
@@ -119,7 +119,7 @@ The mean function works for numeric and logical classes, but not for character a
 
 ### Convert logical, character and factor classes to numeric class. 
 
-```{r as_numeric_test, eval='FALSE'}
+```{r as_numeric_test, eval='FALSE',warning=FALSE,message=FALSE}
 #convert to as.numeric() format
 new_log <- as.numeric(p2_df$log_vec)
 new_char <- as.numeric(p2_df$char_vec)
