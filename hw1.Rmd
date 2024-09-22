@@ -62,7 +62,7 @@ ggsave("plot_hw1_p1.pdf", height = 4, width = 6)
 
 ### Problem 2:
 Create a data frame comprised of:
-a random sample of size 10 from a standard Normal distribution
+a random sample of size 10 from a standard Normal distribution.
 a logical vector indicating whether elements of the sample are greater than 0
 a character vector of length 10
 a factor vector of length 10, with 3 different factor “levels”
