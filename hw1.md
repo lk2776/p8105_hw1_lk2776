@@ -22,9 +22,6 @@ library("palmerpenguins")
 data("penguins", package = "palmerpenguins")
 p1_df_a <- tibble(penguins)
 p1_df_b <- drop_na(p1_df_a)
-
-
-#
 ```
 
 ### Description 
@@ -53,10 +50,8 @@ Mean of body mass in g is: **`r round(mean(pull(p1_df_b, body_mass_g)), digits=2
 ### Plot
 
 ```{r plot}
-
 ggplot(p1_df_b, aes(x = bill_length_mm, y = flipper_length_mm, color=species)) + geom_point()
 ggsave("plot_hw1_p1.pdf", height = 4, width = 6)
-
 
 ```
 
@@ -92,13 +87,7 @@ p2_df <- tibble(
 
 p2_df
 
-#mean(pull(p2_df,norm_samp))
-#mean(pull(p2_df,log_vec))
-#mean(pull(p2_df,char_vec))
-#mean(pull(p2_df,factor_vec))
-
 ```
-
 ### Checking the class of the variables:
 
 The variable `norm_samp` has class `r class(pull(p2_df, norm_samp))`
