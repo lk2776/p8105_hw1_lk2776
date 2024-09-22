@@ -1,4 +1,3 @@
 # p8105_hw1_lk2776
 
-added .Rmd files
-hw1
+hw1: added .Rmd files
