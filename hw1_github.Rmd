@@ -14,13 +14,18 @@ Make a scatterplot of flipper_length_mm (y) vs bill_length_mm (x); color points 
 aes in your ggplot code should help).
 Export your first scatterplot to your project directory using ggsave.
 
-
-```{r}
+```{r setup}
+#load packages 
 library("tidyverse")
 library("palmerpenguins")
+```
 
+```{r read data}
+#load data 
 data("penguins", package = "palmerpenguins")
 p1_df_a <- tibble(penguins)
+
+#drop 'NA' rows
 p1_df_b <- drop_na(p1_df_a)
 ```
 
@@ -50,7 +55,9 @@ Mean of body mass in g is: **`r round(mean(pull(p1_df_b, body_mass_g)), digits=2
 ### Plot
 
 ```{r plot}
+#ggplot for bill length vs flipper length
 ggplot(p1_df_b, aes(x = bill_length_mm, y = flipper_length_mm, color=species)) + geom_point()
+#save the plot as pdf in project directory
 ggsave("plot_hw1_p1.pdf", height = 4, width = 6)
 
 ```
@@ -69,13 +76,11 @@ pull function.
 
 In some cases, you can explicitly convert variables from one type to another. Write a code chunk that applies the as.numeric function to the logical, character, and factor variables (please show this chunk but not the output). What happens, and why? Does this help explain what happens when you try to take the mean?
 
-```{r setup, eval='FALSE'}
-library(tidyverse)
-```
 
 ```{r problem2 create df}
 set.seed(1)
 
+#create dataframe
 p2_df <- tibble(
   norm_samp = rnorm(10, mean = 0, sd = 1),
   log_vec = norm_samp > 0,
@@ -85,28 +90,29 @@ p2_df <- tibble(
                          "They","He","She","She","He"))
 )
 
-p2_df
+#print head of dataframe
+head(p2_df)
 
 ```
 ### Checking the class of the variables:
 
-The variable `norm_samp` has class `r class(pull(p2_df, norm_samp))`
+The variable `norm_samp` has class **`r class(pull(p2_df, norm_samp))`**
 
-The variable `log_vec` has class `r class(pull(p2_df, log_vec))`
+The variable `log_vec` has class **`r class(pull(p2_df, log_vec))`**
 
-The variable `char_vec` has class `r class(pull(p2_df, char_vec))`
+The variable `char_vec` has class **`r class(pull(p2_df, char_vec))`**
 
-The variable `factor_vec` has class `r class(pull(p2_df, factor_vec))`
+The variable `factor_vec` has class **`r class(pull(p2_df, factor_vec))`**
 
 ### Find the mean of the variables:
 
-The variable `norm_samp` has mean `r mean(pull(p2_df, norm_samp))`
+The variable `norm_samp` has mean **`r round(mean(pull(p2_df, norm_samp)), digits=2)`**
 
-The variable `log_vec` has mean `r mean(pull(p2_df, log_vec))`
+The variable `log_vec` has mean **`r mean(pull(p2_df, log_vec))`**
 
-The variable `char_vec` has mean `r mean(pull(p2_df, char_vec))`
+The variable `char_vec` has mean **`r mean(pull(p2_df, char_vec))`**
 
-The variable `factor_vec` has mean `r mean(pull(p2_df, factor_vec))`
+The variable `factor_vec` has mean **`r mean(pull(p2_df, factor_vec))`**
 
 
 The mean function works for numeric and logical classes, but not for character and factor classes. 
@@ -114,6 +120,7 @@ The mean function works for numeric and logical classes, but not for character a
 ### Convert logical, character and factor classes to numeric class. 
 
 ```{r as_numeric_test, eval='FALSE'}
+#convert to as.numeric() format
 new_log <- as.numeric(p2_df$log_vec)
 new_char <- as.numeric(p2_df$char_vec)
 new_factor <- as.numeric(p2_df$factor_vec)

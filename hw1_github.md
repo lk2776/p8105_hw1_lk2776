@@ -14,6 +14,7 @@ your ggplot code should help). Export your first scatterplot to your
 project directory using ggsave.
 
 ``` r
+#load packages 
 library("tidyverse")
 ```
 
@@ -30,9 +31,14 @@ library("tidyverse")
 
 ``` r
 library("palmerpenguins")
+```
 
+``` r
+#load data 
 data("penguins", package = "palmerpenguins")
 p1_df_a <- tibble(penguins)
+
+#drop 'NA' rows
 p1_df_b <- drop_na(p1_df_a)
 ```
 
@@ -65,12 +71,14 @@ Mean of body mass in g is: **4207.06**
 ### Plot
 
 ``` r
+#ggplot for bill length vs flipper length
 ggplot(p1_df_b, aes(x = bill_length_mm, y = flipper_length_mm, color=species)) + geom_point()
 ```
 
 ![](hw1_github_files/figure-gfm/plot-1.png)<!-- -->
 
 ``` r
+#save the plot as pdf in project directory
 ggsave("plot_hw1_p1.pdf", height = 4, width = 6)
 ```
 
@@ -95,12 +103,9 @@ the output). What happens, and why? Does this help explain what happens
 when you try to take the mean?
 
 ``` r
-library(tidyverse)
-```
-
-``` r
 set.seed(1)
 
+#create dataframe
 p2_df <- tibble(
   norm_samp = rnorm(10, mean = 0, sd = 1),
   log_vec = norm_samp > 0,
@@ -110,42 +115,39 @@ p2_df <- tibble(
                          "They","He","She","She","He"))
 )
 
-p2_df
+#print head of dataframe
+head(p2_df)
 ```
 
-    ## # A tibble: 10 × 4
-    ##    norm_samp log_vec char_vec factor_vec
-    ##        <dbl> <lgl>   <chr>    <fct>     
-    ##  1    -0.626 FALSE   Alpha    He        
-    ##  2     0.184 TRUE    Bravo    She       
-    ##  3    -0.836 FALSE   Charlie  They      
-    ##  4     1.60  TRUE    Delta    She       
-    ##  5     0.330 TRUE    Echo     They      
-    ##  6    -0.820 FALSE   Foxtrot  They      
-    ##  7     0.487 TRUE    Golf     He        
-    ##  8     0.738 TRUE    Hotel    She       
-    ##  9     0.576 TRUE    India    She       
-    ## 10    -0.305 FALSE   Juliet   He
+    ## # A tibble: 6 × 4
+    ##   norm_samp log_vec char_vec factor_vec
+    ##       <dbl> <lgl>   <chr>    <fct>     
+    ## 1    -0.626 FALSE   Alpha    He        
+    ## 2     0.184 TRUE    Bravo    She       
+    ## 3    -0.836 FALSE   Charlie  They      
+    ## 4     1.60  TRUE    Delta    She       
+    ## 5     0.330 TRUE    Echo     They      
+    ## 6    -0.820 FALSE   Foxtrot  They
 
 ### Checking the class of the variables:
 
-The variable `norm_samp` has class numeric
+The variable `norm_samp` has class **numeric**
 
-The variable `log_vec` has class logical
+The variable `log_vec` has class **logical**
 
-The variable `char_vec` has class character
+The variable `char_vec` has class **character**
 
-The variable `factor_vec` has class factor
+The variable `factor_vec` has class **factor**
 
 ### Find the mean of the variables:
 
-The variable `norm_samp` has mean 0.1322028
+The variable `norm_samp` has mean **0.13**
 
-The variable `log_vec` has mean 0.6
+The variable `log_vec` has mean **0.6**
 
-The variable `char_vec` has mean NA
+The variable `char_vec` has mean **NA**
 
-The variable `factor_vec` has mean NA
+The variable `factor_vec` has mean **NA**
 
 The mean function works for numeric and logical classes, but not for
 character and factor classes.
@@ -153,6 +155,7 @@ character and factor classes.
 ### Convert logical, character and factor classes to numeric class.
 
 ``` r
+#convert to as.numeric() format
 new_log <- as.numeric(p2_df$log_vec)
 new_char <- as.numeric(p2_df$char_vec)
 ```
